@@ -1,0 +1,11 @@
+.vscode
+
+*.exe
+
+*.dSYM
+
+*.out
+
+.DS_Store
+
+test.c
