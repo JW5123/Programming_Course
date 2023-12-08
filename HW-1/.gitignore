@@ -1,9 +1,0 @@
-.vscode
-
-*.exe
-
-*.dSYM
-
-*.out
-
-.DS_Store
