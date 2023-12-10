@@ -1,2 +1,2 @@
 # Dec 7, 2023 
-### C language array practice
+### C language array
