@@ -2,7 +2,6 @@
 
 int isPalidrome(int n) {
 
-    // !
     int r = 0;
     int str = n;
 
