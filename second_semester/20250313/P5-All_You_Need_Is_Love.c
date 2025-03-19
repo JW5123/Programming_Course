@@ -1,25 +1,31 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int GCD(int a, int b) {
+    if(b == 0)
+        return a;
+    return GCD(b, a % b);
+}
 
 int main() {
-    map <string, int> mp;
-    
-    int t;
-    cin >> t;
-    
-    string s;
-    getline(cin, s);
-    getline(cin, s);
-    while (t--){
-        int sum = 0;
-        while (getline(cin, s)){
-            mp[s]++;
-            sum++;
+    int n, cases = 1;
+    char S1[31], S2[31];
+
+    scanf("%d", &n);
+
+    while (n--) {
+        scanf("%s %s", S1, S2);
+
+        int num1 = strtol(S1, NULL, 2);
+        int num2 = strtol(S2, NULL, 2);
+
+        if (GCD(num1, num2) != 1) {
+            printf("Pair #%d: All you need is love!\n", cases++);
+        } else {
+            printf("Pair #%d: Love is not all you need!\n", cases++);
         }
-        for (auto i: mp){
-            cout << i.first << " " << fixed << setprecision(4) << (double)i.second / sum * 100 << "\n";
-        }
-        cout << "\n";
     }
+
     return 0;
 }
