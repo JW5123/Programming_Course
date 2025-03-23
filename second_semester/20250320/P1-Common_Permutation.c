@@ -10,7 +10,9 @@ void count(char *s, int cnt[]) {
 int main() {
     char a[1001], b[1001];
     while (fgets(a, sizeof(a), stdin)) {
+        
         fgets(b, sizeof(b), stdin);
+        
         int cnta[26] = {0}, cntb[26] = {0};
         count(a, cnta);
         count(b, cntb);
