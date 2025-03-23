@@ -1,46 +1,72 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
-char s[1024];
-int x;
-int v[1000000];
-int v_size = 0;
+int mp[14][11] = {
+    {0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1},
+    {0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0},
+    {0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0},
+    {0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0},
+    {0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0},
+    {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0},
+    {0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0},
+    {0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0},
+    {0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0},
+    {0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0}
+};
+
+char keys[14] = {'c', 'd', 'e', 'f', 'g', 'a', 'b', 'C', 'D', 'E', 'F', 'G', 'A', 'B'};
 
 int main() {
-    while (scanf("%d", &x) == 1) {
-        // consume newline character
-        getchar();
-        // read and discard next line
-        fgets(s, sizeof(s), stdin);
-        // read third line
-        fgets(s, sizeof(s), stdin);
-        // parse input string
-        char* token = strtok(s, " ");
-        v_size = 0;
-        while (token != NULL && v_size < 1000000) {
-            v[v_size++] = atoi(token);
-            token = strtok(NULL, " ");
+
+    int t;
+    char str[100];
+
+    scanf("%d", &t);
+    getchar();
+
+    while(t--) {
+        fgets(str, sizeof(str), stdin);
+        strtok(str, "\n");
+
+        int count[11] = {0};
+        int flag[11] = {0};
+
+        for(int i = 0; str[i] != '\0'; i++) {
+            int index = -1;
+            for(int j = 0; j < 14; j++) {
+                if(str[i] == keys[j]) {
+                    index = j;
+                    break;
+                }
+            }
+            if(index != -1) {
+                for(int k = 1; k <= 10; k++) {
+                    if(mp[index][k]) {
+                        if(flag[k]) {
+                            continue;
+                        } else {
+                            flag[k] = 1;
+                            count[k]++;
+                        }
+                    } else {
+                        flag[k] = 0;
+                    }
+                }
+            }
         }
-        v_size--; // pop_back
-        // reverse array
-        int left = 0;
-        int right = v_size - 1;
-        while (left < right) {
-            int temp = v[left];
-            v[left] = v[right];
-            v[right] = temp;
-            left++;
-            right--;
+
+        for(int i = 1; i <= 10; i++) {
+            if(i != 1) {
+                printf(" ");
+            }
+            printf("%d", count[i]);
         }
-        long long mul = 1;
-        int ans = 0;
-        for (int i = 0; i < v_size; i++) {
-            ans += v[i] * (i + 1) * mul;
-            mul *= x;
-        }
-        printf("%d\n", ans);
+        printf("\n");
     }
+
     return 0;
 }
