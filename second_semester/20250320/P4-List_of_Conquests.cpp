@@ -9,9 +9,9 @@ int main() {
     int n;
     while(cin >> n) {
         while (n--) {
+            getline(cin, s);
             cin >> s;
             mp[s]++;
-            getline(cin, s);
         }
 
         for (auto i: mp) {

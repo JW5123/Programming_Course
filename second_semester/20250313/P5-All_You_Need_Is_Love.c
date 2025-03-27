@@ -20,6 +20,9 @@ int main() {
         int num1 = strtol(S1, NULL, 2);
         int num2 = strtol(S2, NULL, 2);
 
+        printf("%d\n", num1);
+        printf("%d\n", num2);
+
         if (GCD(num1, num2) != 1) {
             printf("Pair #%d: All you need is love!\n", cases++);
         } else {

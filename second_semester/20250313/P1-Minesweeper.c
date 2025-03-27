@@ -2,7 +2,7 @@
 #include <string.h>
 
 int main() {
-    int n, m, cases = 0;
+    int n, m, cases = 1;
     char ch;
     int arr[102][102];
 
@@ -23,7 +23,7 @@ int main() {
         }
         if(cases) 
             printf("\n");
-        printf("Field #%d:\n", ++cases);
+        printf("Field #%d:\n", cases++);
         
         for(int i = 1; i <= n; ++i) {
             for(int j = 1; j <= m; ++j) {

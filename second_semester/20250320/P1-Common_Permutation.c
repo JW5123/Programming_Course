@@ -2,8 +2,8 @@
 #include <string.h>
 
 void count(char *s, int cnt[]) {
-    for (int i = 0; i < strlen(s); ++i) {
-        cnt[(int)(s[i] - 'a')]++;
+    for (size_t i = 0; i < strlen(s); ++i) {
+        cnt[s[i] - 'a']++;
     }
 }
 
@@ -19,8 +19,8 @@ int main() {
 
         for (int i = 0; i < 26; ++i) {
             int min = (cnta[i] < cntb[i]) ? cnta[i] : cntb[i];
-            for (int j = 0; j < min; ++j) {
-                printf("%c", (char)(i + 'a'));
+            for (int j = 0; j < min; j++) {
+                printf("%c", (i + 'a'));
             }
         }
         printf("\n");

@@ -5,11 +5,11 @@ int main() {
 
     int n;
     while(cin >> n) {
+        getchar();
         
-        string s;
-        long long a;
-        getline(cin, s);
         vector<long long> func;
+
+        long long a;
         while(cin >> a && getchar() == ' ') {
             func.push_back(a);
         }
@@ -23,7 +23,6 @@ int main() {
         }
 
         cout << res << "\n";
-        func.clear();
     }
 
     return 0;

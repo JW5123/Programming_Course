@@ -35,6 +35,7 @@ int main() {
         int count[11] = {0};
         int flag[11] = {0};
 
+        // find index in keys. # In c++ can directly use map function
         for(int i = 0; str[i] != '\0'; i++) {
             int index = -1;
             for(int j = 0; j < 14; j++) {
