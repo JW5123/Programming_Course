@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <string.h>
 
 void count(char *s, int cnt[]) {
-    for (size_t i = 0; i < strlen(s); ++i) {
+    for (size_t i = 0; s[i] != '\0'; ++i) {
         cnt[s[i] - 'a']++;
     }
 }
