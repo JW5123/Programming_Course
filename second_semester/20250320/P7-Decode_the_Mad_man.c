@@ -12,7 +12,6 @@ int main() {
             for (int i = 0; key[i]; i++)
                 if (c == key[i]){
                     printf("%c", key[i - 2]);
-                    break;
                 }
         }
     }
