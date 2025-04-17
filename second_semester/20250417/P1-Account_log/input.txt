@@ -1,0 +1,5 @@
+Account number    Name          Balance
+700               Suzy Green    -14.22
+100               Alan Jones    348.17
+500               Sam Sharp     0.00
+300               Mary Smith    27.19

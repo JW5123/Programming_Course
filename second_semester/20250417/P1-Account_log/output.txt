@@ -1,0 +1,5 @@
+Name    Balance
+Alan    348.17
+Mary    27.19
+Sam     0.00
+Suzy    -14.22
