@@ -20,8 +20,8 @@ int get_cost(int num, int base) {
 
 int main() {
 
-    FILE *fp_in = fopen("C:\\Users\\Jay\\Documents\\Github\\Programming_Course\\second_semester\\20250417\\P8-11005_Cheapest_Base\\input.txt", "r");
-    FILE *fp_out = fopen("C:\\Users\\Jay\\Documents\\Github\\Programming_Course\\second_semester\\20250417\\P8-11005_Cheapest_Base\\output.txt", "w");
+    FILE *fp_in = fopen("input.txt", "r");
+    FILE *fp_out = fopen("output.txt", "w");
 
     int T, case_num = 1;
     fscanf(fp_in, "%d", &T);
