@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
+#include <stdlib.h> 
 
 const char *key[] = {
-    "", "", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"
+    "", "", "ABC", "DEF", "GHI", "JKL", "MNO", "PRS", "TUV", "WXY"
 };
 
 void clean(char *phone, char *output) {
@@ -50,7 +50,7 @@ int main() {
         }
     }
 
-    FILE *file = fopen("words.txt", "w");
+    FILE *file = fopen("C:\\Users\\Jay\\Documents\\Github\\Programming_Course\\second_semester\\Homework\\Assignment2\\11-13\\words.txt", "w");
 
     combinations(file, number, result, 0);
     fclose(file);
