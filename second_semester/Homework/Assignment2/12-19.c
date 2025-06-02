@@ -47,14 +47,6 @@ int depth(TreeNode* root) {
     return l > r ? l + 1 : r + 1;
 }
 
-void freeTree(TreeNode* root) {
-    if (root) {
-        freeTree(root->left);
-        freeTree(root->right);
-        free(root);
-    }
-}
-
 int main() {
 
     while (1) {
@@ -89,7 +81,6 @@ int main() {
         preorderTraversal(root);
         printf("\n樹的深度: %d\n", depth(root));
 
-        freeTree(root);
         printf("\n");
     }
 

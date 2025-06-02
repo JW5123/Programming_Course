@@ -30,7 +30,6 @@ void insertNode(ListNode **head, char data) {
 
 void preNode(ListNode **head, char data) {
     ListNode *node = createNode(data);
-    node->data = data;
     node->next = *head;
     *head = node;
 }
