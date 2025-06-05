@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #define MAX 100
 
 typedef struct {
@@ -14,11 +13,11 @@ void createQueue(Queue *q) {
     q->size = 0;
 }
 
-bool isEmptyQueue(Queue *q) {
+int isEmptyQueue(Queue *q) {
     return q->size == 0;
 }
 
-bool isFullQueue(Queue *q) {
+int isFullQueue(Queue *q) {
     return q->size == MAX;
 }
 
@@ -31,40 +30,33 @@ void enqueue(Queue *q, char val) {
 }
 
 char dequeue(Queue *q) {
-    if (!isEmptyQueue(q)) {
-        char val = q->data[q->front];
-        q->front = (q->front + 1) % MAX;
-        q->size--;
-        return val;
+    if (isEmptyQueue(q)) {
+        return '\0';
     }
-    return '\0';
-}
-
-char front(Queue *q) {
-    if (!isEmptyQueue(q)) {
-        return q->data[q->front];
-    }
-    return '\0';
+    char val = q->data[q->front];
+    q->front = (q->front + 1) % MAX;
+    q->size--;
+    return val;
 }
 
 typedef struct {
     Queue q1, q2;
-    int capacity;
+    int size;
 } Stack;
 
-void createStack(Stack *s, int cap) {
+void createStack(Stack *s, int size) {
     createQueue(&s->q1);
     createQueue(&s->q2);
-    s->capacity = cap;
+    s->size = size;
     printf("OK\n");
 }
 
-bool isEmptyStack(Stack *s) {
+int isEmptyStack(Stack *s) {
     return isEmptyQueue(&s->q1);
 }
 
-bool isFullStack(Stack *s) {
-    return s->q1.size == s->capacity;
+int isFullStack(Stack *s) {
+    return s->q1.size == s->size;
 }
 
 void push(Stack *s, char val) {
@@ -85,10 +77,9 @@ void push(Stack *s, char val) {
 void pop(Stack *s) {
     if (isEmptyStack(s)) {
         printf("Stack empty\n");
-        return;
+    } else {
+        printf("%c\n", dequeue(&s->q1));
     }
-    char val = dequeue(&s->q1);
-    printf("%c\n", val);
 }
 
 void empty(Stack *s) {
@@ -97,12 +88,12 @@ void empty(Stack *s) {
 
 int main() {
     Stack s;
-    int i, size;
+    int option, size;
     char val;
     while (1) {
-        scanf("%d", &i);
+        scanf("%d", &option);
 
-        switch (i) {
+        switch (option) {
             case 1:
                 scanf("%d", &size);
                 createStack(&s, size);

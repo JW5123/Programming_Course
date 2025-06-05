@@ -7,12 +7,50 @@ typedef struct Node {
 } Node;
 
 Node* createNode(int data) {
-    Node* new_data = (Node*)malloc(sizeof(Node));
-    new_data->data = data;
-    new_data->next = NULL;
-    return new_data;
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    return node;
 }
 
+void insertNode(Node** head, Node** tail, int data) {
+    Node* node = createNode(data);
+    if(*head == NULL) {
+        *head = *tail = node;
+    } else {
+        (*tail)->next = node;
+        *tail = node;
+    }
+}
+
+void printReverse(Node* head) {
+    if(head == NULL) {
+        return;
+    }
+    if(head->next != NULL) {
+        printReverse(head->next);
+        printf("->");
+    }
+    printf("%d", head->data);
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+
+    Node* head = NULL;
+    Node* tail = NULL;
+    for (int i = 1; i <= n; ++i) {
+        insertNode(&head, &tail, i);
+    }
+
+    printReverse(head);
+    printf("\n");
+
+    return 0;
+}
+
+/*
 Node* reverseList(Node* head) {
     Node* prev = NULL;
     Node* curr = head;
@@ -25,36 +63,4 @@ Node* reverseList(Node* head) {
     }
     return prev;
 }
-
-void printList(Node* head) {
-    while (head != NULL) {
-        printf("%d", head->data);
-        if (head->next != NULL) {
-            printf("->");
-        }
-        head = head->next;
-    }
-    printf("\n");
-}
-
-int main() {
-    int n;
-    scanf("%d", &n);
-
-    Node* head = NULL;
-    Node* tail = NULL;
-    for (int i = 1; i <= n; ++i) {
-        Node* new_data = createNode(i);
-        if (head == NULL) {
-            head = tail = new_data;
-        } else {
-            tail->next = new_data;
-            tail = new_data;
-        }
-    }
-
-    head = reverseList(head);
-    printList(head);
-
-    return 0;
-}
+*/

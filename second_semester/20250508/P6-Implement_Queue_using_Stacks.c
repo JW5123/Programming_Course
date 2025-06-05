@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #define MAX 100
 
 typedef struct {
@@ -12,11 +11,11 @@ void createStack(Stack *s) {
     s->top = -1;
 }
 
-bool isEmptyStack(Stack *s) {
+int isEmptyStack(Stack *s) {
     return s->top == -1;
 }
 
-bool isFullStack(Stack *s) {
+int isFullStack(Stack *s) {
     return s->top == MAX - 1;
 }
 
@@ -27,17 +26,10 @@ void push(Stack *s, char val) {
 }
 
 char pop(Stack *s) {
-    if (!isEmptyStack(s)) {
-        return s->data[s->top--];
+    if (isEmptyStack(s)) {
+        return '\0';
     }
-    return '\0';
-}
-
-char peek(Stack *s) {
-    if (!isEmptyStack(s)) {
-        return s->data[s->top];
-    }
-    return '\0';
+    return s->data[s->top--];
 }
 
 typedef struct {
@@ -54,11 +46,11 @@ void createQueue(Queue *q, int data) {
     printf("OK\n");
 }
 
-bool isEmptyQueue(Queue *q) {
+int isEmptyQueue(Queue *q) {
     return q->size == 0;
 }
 
-bool isFullQueue(Queue *q) {
+int isFullQueue(Queue *q) {
     return q->size == q->input;
 }
 
@@ -77,7 +69,7 @@ void dequeue(Queue *q) {
         printf("Queue empty\n");
         return;
     }
-    if (isEmptyStack(&q->s2)) {
+    if(isEmptyStack(&q->s2)) {
         while (!isEmptyStack(&q->s1)) {
             push(&q->s2, pop(&q->s1));
         }
@@ -93,11 +85,11 @@ void empty(Queue *q) {
 
 int main() {
     Queue q;
-    int i, size;
+    int option, size;
     char val;
     while (1) {
-        scanf("%d", &i);
-        switch (i) {
+        scanf("%d", &option);
+        switch (option) {
             case 1:
                 scanf("%d", &size);
                 createQueue(&q, size);

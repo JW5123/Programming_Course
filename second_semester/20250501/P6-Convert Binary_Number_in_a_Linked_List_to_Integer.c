@@ -7,16 +7,26 @@ typedef struct node {
 } Node;
 
 Node* createNode(int data) {
-    Node* new_data = (Node*)malloc(sizeof(Node));
-    new_data->data = data;
-    new_data->next = NULL;
-    return new_data;
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    return node;
+}
+
+void insertNode(Node** head, Node** tail, int data) {
+    Node* node = createNode(data);
+    if (*head == NULL) {
+        *head = *tail = node;
+    } else {
+        (*tail)->next = node;
+        *tail = node;
+    }
 }
 
 int binTodec(Node* head) {
     int res = 0;
     while (head != NULL) {
-        res = (res << 1) | head->data;
+        res = res * 2 + head->data;
         head = head->next;
     }
     return res;
@@ -32,14 +42,7 @@ int main() {
         int x;
 
         while (scanf("%d", &x) == 1) {
-            Node* new_data = createNode(x);
-            if (head == NULL) {
-                head = tail = new_data;
-            } else {
-                tail->next = new_data;
-                tail = new_data;
-            }
-
+            insertNode(&head, &tail, x);
             if (getchar() == '\n') 
                 break;
         }

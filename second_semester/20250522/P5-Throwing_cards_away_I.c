@@ -26,11 +26,10 @@ int dequeue(Queue *q) {
 }
 
 int main() {
+
+    
     int n;
-    while (scanf("%d", &n) != EOF) {
-        if(n == 0) {
-            break;
-        }
+    while (scanf("%d", &n) && n != 0) {
         Queue q;
         initQueue(&q);
 

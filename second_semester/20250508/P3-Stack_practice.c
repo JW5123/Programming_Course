@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#define MAX_LEN 100
+#define MAX 100
 
 bool is_pair(char cur, char tmp) {
     if (cur == ')' && tmp == '(')
@@ -14,18 +14,14 @@ bool is_pair(char cur, char tmp) {
 }
 
 bool isValid(char *s) {
-    char stack[MAX_LEN];
+    char stack[MAX];
     int top = -1;
 
     for (int i = 0; s[i] != '\0'; i++) {
         if (s[i] == '(' || s[i] == '{' || s[i] == '[') {
             stack[++top] = s[i];
         } else if (s[i] == ')' || s[i] == '}' || s[i] == ']') {
-            if (top >= 0) {
-                char tmp = stack[top--];
-                if (!is_pair(s[i], tmp))
-                    return false;
-            } else {
+            if ( top == -1 || !is_pair(s[i], stack[top--])) {
                 return false;
             }
         }
@@ -35,8 +31,8 @@ bool isValid(char *s) {
 }
 
 int main() {
-    char input[MAX_LEN];
-    while (fgets(input, MAX_LEN, stdin)) {
+    char input[MAX];
+    while (fgets(input, MAX, stdin)) {
         if(input[0] == '0'){
             printf("quit\n");
             break;
