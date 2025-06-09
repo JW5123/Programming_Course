@@ -31,11 +31,11 @@ TreeNode* insertNode(TreeNode* root, int data, int* isDuplicate) {
     return root;
 }
 
-void preorderTraversal(TreeNode* root) {
+void preorder(TreeNode* root) {
     if (root) {
         printf("%d ", root->data);
-        preorderTraversal(root->left);
-        preorderTraversal(root->right);
+        preorder(root->left);
+        preorder(root->right);
     }
 }
 
@@ -45,14 +45,6 @@ int depth(TreeNode* root) {
     int l = depth(root->left);
     int r = depth(root->right);
     return l > r ? l + 1 : r + 1;
-}
-
-void freeTree(TreeNode* root) {
-    if (root) {
-        freeTree(root->left);
-        freeTree(root->right);
-        free(root);
-    }
 }
 
 int main() {
@@ -86,10 +78,9 @@ int main() {
         printf("\n");
 
         printf("樹的前序遍歷結果: ");
-        preorderTraversal(root);
+        preorder(root);
         printf("\n樹的深度: %d\n", depth(root));
 
-        freeTree(root);
         printf("\n");
     }
 

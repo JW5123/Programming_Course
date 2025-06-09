@@ -28,12 +28,15 @@ int peek(Stack* s) {
 }
 
 int main() {
+    
+    
     int n;
-    while (scanf("%d", &n) != EOF) {
-        if(n == 0) {
-            break;
-        }
+    while (scanf("%d", &n) && n != 0) {
         while (1) {
+
+            Stack s;
+            initStack(&s);
+            
             int target[MAX];
             scanf("%d", &target[0]);
             if (target[0] == 0) {
@@ -44,8 +47,6 @@ int main() {
             for (int i = 1; i < n; i++)
                 scanf("%d", &target[i]);
 
-            Stack s;
-            initStack(&s);
             int train = 1, index = 0;
 
             while (train <= n) {

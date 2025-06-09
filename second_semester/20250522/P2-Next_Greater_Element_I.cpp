@@ -12,10 +12,12 @@ vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2) {
     for (int i = n2 - 1; i >= 0; i--) {
         while (!st.empty() && nums2[i] > st.top())
             st.pop();
+            
         if (st.empty())
             ans[i] = -1;
         else
             ans[i] = st.top();
+        // ans[i] = st.empty() ? -1 : st.top();
         st.push(nums2[i]);
     }
     for (int i = 0; i < n1; i++) {
@@ -48,7 +50,8 @@ int main() {
     }
 
     vector<int> res = nextGreaterElement(nums1, nums2);
-    for (int i = 0, n = res.size(); i < n; ++i) {
+    int n = res.size();
+    for (int i = 0; i < n; ++i) {
         if(i == n - 1) {
             cout << res[i];
         } else {

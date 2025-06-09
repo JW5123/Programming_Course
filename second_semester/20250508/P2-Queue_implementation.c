@@ -82,15 +82,3 @@ int main() {
     }
     return 0;
 }
-
-/*
-改成queue寫法
-1. create queue
-2. enqueue element to queue
-3. dequeue element from queue
-輸入要執行的動作 i
-如果輸入的i = 1，則會再讀入一個整數代表queue size
-如果輸入的i = 2，則會再讀入一個字元代表要推入的值
-如果輸入的i = 3，則會輸出元素
-如果輸入的i = 0，則結束程式
-*/

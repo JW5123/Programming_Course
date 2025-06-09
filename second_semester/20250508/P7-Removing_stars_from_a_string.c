@@ -4,22 +4,19 @@
 
 char* removeStars(char* s) {
     int len = strlen(s);
-    char stack[len + 1]; // 加1為'\0'
+    char *stack = (char*)malloc(sizeof(char) * len + 1);
     int top = -1;
     
     for (int i = 0; i < len; i++) {
         if (s[i] == '*') {
-            if (top >= 0) {
-                top--;
-            }
+            top--;
         } else {
             stack[++top] = s[i]; 
         }
     }
 
-    stack[top + 1] = '\0';
-    strcpy(s, stack);
-    return s;
+    stack[++top] = '\0';
+    return stack;
 }
 
 int main() {
