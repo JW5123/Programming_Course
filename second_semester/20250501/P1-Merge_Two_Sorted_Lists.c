@@ -2,27 +2,25 @@
 #include <stdlib.h>
 
 typedef struct Node {
-    int val;
+    int data;
     struct Node* next;
 } Node;
 
-Node* createNode(int val) {
-    Node* new_data = (Node*)malloc(sizeof(Node));
-    new_data->val = val;
-    new_data->next = NULL;
-    return new_data;
+Node* createNode(int data) {
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    return node;
 }
 
-void push(Node** head, int val) {
-    Node* new_data = createNode(val);
+void insertNode(Node** head, Node** tail, int data) {
+    Node* node = createNode(data);
     if (*head == NULL) {
-        *head = new_data;
-        return;
+        *head = *tail = node;
+    } else {
+        (*tail)->next = node;
+        *tail = node;
     }
-    Node* temp = *head;
-    while (temp->next != NULL)
-        temp = temp->next;
-    temp->next = new_data;
 }
 
 Node* mergeLists(Node* l1, Node* l2) {
@@ -31,7 +29,7 @@ Node* mergeLists(Node* l1, Node* l2) {
     dummy.next = NULL;
 
     while (l1 && l2) {
-        if (l1->val < l2->val) {
+        if (l1->data < l2->data) {
             tail->next = l1;
             l1 = l1->next;
         } else {
@@ -47,7 +45,7 @@ Node* mergeLists(Node* l1, Node* l2) {
 
 void printList(Node* head) {
     while (head) {
-        printf("%d ", head->val);
+        printf("%d ", head->data);
         head = head->next;
     }
     printf("\n");
@@ -61,15 +59,16 @@ int main() {
         int x;
         Node* list1 = NULL;
         Node* list2 = NULL;
+        Node* tail = NULL;
 
         while (scanf("%d", &x) == 1) {
-            push(&list1, x);
+            insertNode(&list1, &tail, x);
             if (getchar() == '\n') 
                 break;
         }
 
         while (scanf("%d", &x) == 1) {
-            push(&list2, x);
+            insertNode(&list2, &tail, x);
             if (getchar() == '\n') 
                 break;
         }

@@ -8,22 +8,23 @@ typedef struct node {
     struct node* prev;
 } Node;
 
-Node* createList(char* str) {
-    Node* head = NULL;
-    Node* tail = NULL;
-    for (int i = 0; i < strlen(str); i++) {
-        Node* new_node = (Node*)malloc(sizeof(Node));
-        new_node->data = str[i];
-        new_node->prev = tail;
-        new_node->next = NULL;
-        if (head == NULL) {
-            head = new_node;
-        } else {
-            tail->next = new_node;
-        }
-        tail = new_node;
+Node* createNode(char data) {
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    node->prev = NULL;
+    return node;
+}
+
+void insertNode(Node** head, Node** tail, char data) {
+    Node* node = createNode(data);
+    if(*head == NULL) {
+        *head = *tail = node;
+    } else {
+        node->prev = *tail;
+        (*tail)->next = node;
+        *tail = node;
     }
-    return head;
 }
 
 int isPalindrome(Node *head) {
@@ -50,7 +51,14 @@ int main() {
     for(int i = 0; i < t; i++) {
         char str[100];
         scanf("%s", str);
-        Node *head = createList(str);
+        
+        Node* head = NULL;
+        Node* tail = NULL;
+
+        for(int j = 0; j < strlen(str); j++) {
+            insertNode(&head, &tail, str[j]);
+        }
+
         if(isPalindrome(head)) {
             printf("Yes\n");
         } else {

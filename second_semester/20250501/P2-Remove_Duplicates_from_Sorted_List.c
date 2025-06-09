@@ -6,44 +6,43 @@ typedef struct node {
     struct node *next;
 } Node;
 
-void push(Node **head, int new_data) {
-    Node *new_node = (Node*)malloc(sizeof(Node));
-    new_node->data = new_data;
-    new_node->next = NULL;
+Node* createNode(int data) {
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    return node;
+}
+
+void insertNode(Node **head, Node **tail, int data) {
+    Node* node = createNode(data);
     if (*head == NULL) {
-        *head = new_node;
+        *head = *tail = node;
     } else {
-        Node* curr = *head;
-        while (curr->next != NULL) {
-            curr = curr->next;
-        }
-        curr->next = new_node;
+        (*tail)->next = node;
+        *tail = node;
     }
 }
 
-Node* removeDuplicates(Node* head) {
-    Node* curr = head;
-    while (curr != NULL) {
-        Node* next = curr->next;
-        while (next != NULL) {
-            if (curr->data == next->data) {
-                Node* temp = next;
-                next = next->next;
-                free(temp);
-                curr->next = next;
-            } else {
-                next = next->next;
-            }
-        }
-        curr = curr->next;
-    }
-    return head;
+int cmp(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
 }
 
-void printList(Node* head) {
-    while (head != NULL) {
-        printf("%d ", head->data);
+void removeDuplicates(Node *head) {
+    int data[10001];
+    int count = 0;
+
+    while(head) {
+        data[count++] = head->data;
         head = head->next;
+    }
+
+    qsort(data, count, sizeof(int), cmp);
+
+    printf("%d", data[0]);
+    for(int i = 1; i < count; i++) {
+        if(data[i] != data[i - 1]) {
+            printf(" %d", data[i]);
+        }
     }
     printf("\n");
 }
@@ -51,24 +50,16 @@ void printList(Node* head) {
 int main() {
 
     Node *head = NULL;
+    Node *tail = NULL;
 
     int n;
-    while(1) {
-        scanf("%d", &n);
+    while(scanf("%d", &n) == 1) {
         if(getchar() == '\n') 
             break;
-        push(&head, n);
+        insertNode(&head, &tail, n);
     }
 
-    head = removeDuplicates(head);
-    printList(head);
+    removeDuplicates(head);
 
     return 0;
 }
-
-
-/*
-
-
-
-*/
