@@ -26,7 +26,7 @@ int main() {
             }
         }
 
-        printf("TERM %d IS %d/%d\t", num, x, y);
+        printf("TERM %d IS %d/%d\n", num, x, y);
     }
     return 0;
 }

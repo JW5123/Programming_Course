@@ -3,7 +3,7 @@
 
 int *stack;
 int size = 0;
-int curr = 0;
+int top = 0;
 
 void createStack(int stackSize) {
     stack = (int *)malloc(stackSize * sizeof(int));
@@ -12,19 +12,19 @@ void createStack(int stackSize) {
 }
 
 void push(int data) {
-    if (curr >= size) {
+    if (top >= size) {
         printf("Stack full\n");
     } else {
-        stack[++curr] = data;
+        stack[++top] = data;
         printf("OK\n");
     }
 } 
 
 void pop() {
-    if (curr == 0) {
+    if (top == 0) {
         printf("Stack empty\n");
     } else {
-        printf("%c\n", stack[curr--]);
+        printf("%c\n", stack[top--]);
     }
 }
 
