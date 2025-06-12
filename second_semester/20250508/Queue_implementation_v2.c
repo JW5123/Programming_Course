@@ -4,28 +4,28 @@
 int *queue;
 int size = 0;
 int front = 0;
-int tail = 0;
+int rear = 0;
 
 void createQueue(int queueSize) {
     queue = (int*)malloc(queueSize * sizeof(int));
-    size = queueSize;
+    size = queueSize + 1;
     printf("OK\n");
 }
 
 int isFull() {
-    return (tail + 1) % size == front;
+    return (rear + 1) % size == front;
 }
 
 int isEmpty() {
-    return front == tail;
+    return front == rear;
 }
 
-void enqueue(int value) {
+void enqueue(int data) {
     if (isFull()) {
         printf("Queue full\n");
     } else {
-        queue[tail] = value;
-        tail = (tail + 1) % size;
+        queue[rear] = data;
+        rear = (rear + 1) % size;
         printf("OK\n");
     }
 }
@@ -34,9 +34,9 @@ void dequeue() {
     if (isEmpty()) {
         printf("Queue empty\n");
     } else {
-        int value = queue[front];
+        int data = queue[front];
         front = (front + 1) % size;
-        printf("%c\n", value);
+        printf("%c\n", data);
     }
 }
 
@@ -47,7 +47,7 @@ void quit() {
 
 int main() {
     int option, queueSize;
-    char value;
+    char data;
 
     while (1) {
         scanf("%d", &option);
@@ -55,11 +55,11 @@ int main() {
         switch(option) {
             case 1:
                 scanf("%d", &queueSize);
-                createQueue(queueSize + 1);
+                createQueue(queueSize);
                 break;
             case 2:
-                scanf(" %c", &value);
-                enqueue(value);
+                scanf(" %c", &data);
+                enqueue(data);
                 break;
             case 3:
                 dequeue();

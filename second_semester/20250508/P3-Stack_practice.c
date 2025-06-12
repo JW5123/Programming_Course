@@ -3,7 +3,7 @@
 #include <string.h>
 #define MAX 100
 
-bool is_pair(char cur, char tmp) {
+bool isPair(char cur, char tmp) {
     if (cur == ')' && tmp == '(')
         return true;
     else if (cur == '}' && tmp == '{')
@@ -21,7 +21,7 @@ bool isValid(char *s) {
         if (s[i] == '(' || s[i] == '{' || s[i] == '[') {
             stack[++top] = s[i];
         } else if (s[i] == ')' || s[i] == '}' || s[i] == ']') {
-            if ( top == -1 || !is_pair(s[i], stack[top--])) {
+            if ( top == -1 || !isPair(s[i], stack[top--])) {
                 return false;
             }
         }

@@ -13,12 +13,8 @@ void initQueue(Queue *q) {
     q->rear = 0;
 }
 
-int isEmpty(Queue *q) {
-    return q->front == q->rear;
-}
-
-void enqueue(Queue *q, int value) {
-    q->data[q->rear++] = value;
+void enqueue(Queue *q, int data) {
+    q->data[q->rear++] = data;
 }
 
 int dequeue(Queue *q) {

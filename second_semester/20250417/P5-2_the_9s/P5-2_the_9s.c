@@ -27,7 +27,7 @@ int main() {
     FILE *fp_out = fopen("P5-2_the_9s/output.txt", "w");
 
     char arr[1001];
-    while (fscanf(fp_in, "%s", arr) != EOF) {
+    while (fscanf(fp_in, "%s", arr) == 1) {
         if (arr[0] == '0') {
             break;
         }

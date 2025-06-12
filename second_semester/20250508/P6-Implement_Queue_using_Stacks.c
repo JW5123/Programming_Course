@@ -34,14 +34,14 @@ char pop(Stack *s) {
 
 typedef struct {
     Stack s1, s2;
-    int input;
+    int capacity;
     int size;
 } Queue;
 
-void createQueue(Queue *q, int data) {
+void createQueue(Queue *q, int capacity) {
     createStack(&q->s1);
     createStack(&q->s2);
-    q->input = data;
+    q->capacity = capacity;
     q->size = 0;
     printf("OK\n");
 }
@@ -51,7 +51,7 @@ int isEmptyQueue(Queue *q) {
 }
 
 int isFullQueue(Queue *q) {
-    return q->size == q->input;
+    return q->size == q->capacity;
 }
 
 void enqueue(Queue *q, char val) {

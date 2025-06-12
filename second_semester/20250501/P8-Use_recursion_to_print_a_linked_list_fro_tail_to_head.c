@@ -27,7 +27,7 @@ void printReverse(Node* head) {
     if(head == NULL) {
         return;
     }
-    if(head->next != NULL) {
+    if(head->next != NULL) { 
         printReverse(head->next);
         printf("->");
     }
@@ -40,7 +40,7 @@ int main() {
 
     Node* head = NULL;
     Node* tail = NULL;
-    for (int i = 1; i <= n; ++i) {
+    for (int i = 1; i <= n; i++) {
         insertNode(&head, &tail, i);
     }
 
@@ -52,8 +52,8 @@ int main() {
 
 /*
 Node* reverseList(Node* head) {
-    Node* prev = NULL;
     Node* curr = head;
+    Node* prev = NULL;
     Node* next = NULL;
     while (curr != NULL) {
         next = curr->next;

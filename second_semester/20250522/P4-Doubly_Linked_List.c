@@ -2,20 +2,20 @@
 #include <stdlib.h>
 
 typedef struct Node {
-    int id;
+    int data;
     struct Node* prev;
     struct Node* next;
 } Node;
 
-Node* createNode(int id) {
+Node* createNode(int data) {
     Node* node = (Node*)malloc(sizeof(Node));
-    node->id = id;
+    node->data = data;
     node->prev = NULL;
     node->next = NULL;
     return node;
 }
 
-void append(Node** head, Node** tail, Node* node) {
+void insertNode(Node** head, Node** tail, Node* node) {
     if (*head == NULL) {
         *head = *tail = node;
     } else {
@@ -75,7 +75,7 @@ int main() {
 
     for (int i = 1; i <= N; i++) {
         players[i] = createNode(i);
-        append(&head, &tail, players[i]);
+        insertNode(&head, &tail, players[i]);
     }
 
     for (int i = 0; i < M; i++) {
@@ -90,7 +90,7 @@ int main() {
 
     Node* curr = head;
     while (curr) {
-        printf("%d", curr->id);
+        printf("%d", curr->data);
         if (curr->next) {
             printf(" ");
         }

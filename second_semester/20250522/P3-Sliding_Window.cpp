@@ -27,13 +27,15 @@ int main() {
     vector<int> nums;
     while(cin >> n >> k) {
         nums.clear();
-        for(int i = 0; i < n; i++) {
-            int x;
-            cin >> x;
+        int x;
+        while(cin >> x) {
             nums.push_back(x);
+            if(getchar() == '\n') {
+                break;
+            }
         }
         vector<int> minNums = slidingWindow(nums, k, false);
-        for(int i = 0; i < minNums.size(); i++) {
+        for(size_t i = 0; i < minNums.size(); i++) {
             if(i == minNums.size() - 1) {
                 cout << minNums[i];
             } else {
@@ -43,7 +45,7 @@ int main() {
         cout << "\n";
 
         vector<int> maxNums = slidingWindow(nums, k, true);
-        for(int i = 0; i < maxNums.size(); i++) {
+        for(size_t i = 0; i < maxNums.size(); i++) {
             if(i == maxNums.size() - 1) {
                 cout << maxNums[i];
             } else {

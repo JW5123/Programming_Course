@@ -21,10 +21,10 @@ int isFullQueue(Queue *q) {
     return q->size == MAX;
 }
 
-void enqueue(Queue *q, char val) {
+void enqueue(Queue *q, char data) {
     if (!isFullQueue(q)) {
         q->rear = (q->rear + 1) % MAX;
-        q->data[q->rear] = val;
+        q->data[q->rear] = data;
         q->size++;
     }
 }
@@ -33,10 +33,10 @@ char dequeue(Queue *q) {
     if (isEmptyQueue(q)) {
         return '\0';
     }
-    char val = q->data[q->front];
+    char data = q->data[q->front];
     q->front = (q->front + 1) % MAX;
     q->size--;
-    return val;
+    return data;
 }
 
 typedef struct {
@@ -59,12 +59,12 @@ int isFullStack(Stack *s) {
     return s->q1.size == s->size;
 }
 
-void push(Stack *s, char val) {
+void push(Stack *s, char data) {
     if (isFullStack(s)) {
         printf("Stack full\n");
         return;
     }
-    enqueue(&s->q2, val);
+    enqueue(&s->q2, data);
     while (!isEmptyQueue(&s->q1)) {
         enqueue(&s->q2, dequeue(&s->q1));
     }
@@ -89,7 +89,7 @@ void empty(Stack *s) {
 int main() {
     Stack s;
     int option, size;
-    char val;
+    char data;
     while (1) {
         scanf("%d", &option);
 
@@ -99,8 +99,8 @@ int main() {
                 createStack(&s, size);
                 break;
             case 2:
-                scanf(" %c", &val);
-                push(&s, val);
+                scanf(" %c", &data);
+                push(&s, data);
                 break;
             case 3:
                 pop(&s);

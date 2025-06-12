@@ -52,8 +52,7 @@ int main() {
         insertNode(&head, &tail, i);
     }
 
-    int result = findKthFromEnd(head, k);
-    printf("%d\n", result);
+    printf("%d\n", findKthFromEnd(head, k));
 
     return 0;
 }

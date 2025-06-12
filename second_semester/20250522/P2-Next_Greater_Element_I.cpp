@@ -39,13 +39,13 @@ int main() {
     int num;
     while (cin >> num) {
         nums1.push_back(num);
-        if(cin.peek() == '\n')
+        if(getchar() == '\n')
             break;
     }
 
     while (cin >> num) {
         nums2.push_back(num);
-        if(cin.peek() == '\n')
+        if(getchar() == '\n')
             break;
     }
 

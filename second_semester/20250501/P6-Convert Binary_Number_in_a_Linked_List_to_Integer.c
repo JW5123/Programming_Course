@@ -47,8 +47,7 @@ int main() {
                 break;
         }
 
-        int res = binTodec(head);
-        printf("%d\n", res);
+        printf("%d\n", binTodec(head));
     }
 
     return 0;

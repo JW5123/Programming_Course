@@ -1,24 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node {
+typedef struct head {
     int data;
-    struct node* next;
+    struct head* next;
 } Node;
 
-void push(Node** head, int new_data) {
-    Node* new_node = (Node*)malloc(sizeof(Node));
-    new_node->data = new_data;
-    new_node->next = (*head);
-    (*head) = new_node;
+Node* createNode(int data) {
+    Node* head = (Node*)malloc(sizeof(Node));
+    head->data = data;
+    head->next = NULL;
+    return head;
+}
+
+void insertNode(Node** head, Node** tail, int data) {
+    Node* node = createNode(data);
+    if(*head == NULL) {
+        *head = *tail = node;
+    } else {
+        (*tail)->next = node;
+        *tail = node;
+    }
 }
 
 void reverse(Node** head) {
     Node* curr = *head;
     Node* prev = NULL;
     Node* next = NULL;
-    
-    while (curr != NULL) {
+
+    while(curr != NULL) {
         next = curr->next;
         curr->next = prev;
         prev = curr;
@@ -27,13 +37,13 @@ void reverse(Node** head) {
     *head = prev;
 }
 
-void printList(Node* node) {
-    while (node != NULL) {
-        if(node->next == NULL)
-            printf("%d\n", node->data);
+void printList(Node* head) {
+    while (head != NULL) {
+        if(head->next == NULL)
+            printf("%d\n", head->data);
         else
-            printf("%d ", node->data);
-        node = node->next;
+            printf("%d ", head->data);
+        head = head->next;
     }
 }
 
@@ -43,15 +53,17 @@ int main() {
 
     for (int i = 0; i < t; i++) {
         Node* head = NULL;
+        Node* tail = NULL;
+
         int num;
         while (scanf("%d", &num) == 1) {
-            push(&head, num);
+            insertNode(&head, &tail, num);
             if (getchar() == '\n') 
                 break;
         }
 
-        printList(head);
         reverse(&head);
+        printList(head);
     }
 
     return 0;

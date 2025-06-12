@@ -11,11 +11,11 @@ void createStack(int stackSize) {
     printf("OK\n");
 }
 
-void push(int value) {
+void push(int data) {
     if (curr >= size) {
         printf("Stack full\n");
     } else {
-        stack[++curr] = value;
+        stack[++curr] = data;
         printf("OK\n");
     }
 } 
@@ -36,7 +36,7 @@ void quit() {
 int main() {
     
     int option, stackSize;
-    char value;
+    char data;
 
     while(1) {
         scanf("%d", &option);
@@ -47,8 +47,8 @@ int main() {
                 createStack(stackSize);
                 break;
             case 2:
-                scanf(" %c", &value);
-                push(value);
+                scanf(" %c", &data);
+                push(data);
                 break;
             case 3:
                 pop();

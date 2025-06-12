@@ -39,7 +39,12 @@ Node* mergeLists(Node* l1, Node* l2) {
         tail = tail->next;
     }
 
-    tail->next = (l1 != NULL) ? l1 : l2;
+    if(l1 != NULL) {
+        tail->next = l1;
+    } else {
+        tail->next = l2;
+    }
+    
     return dummy.next;
 }
 

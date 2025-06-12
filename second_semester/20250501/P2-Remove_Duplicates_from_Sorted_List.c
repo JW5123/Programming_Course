@@ -32,16 +32,15 @@ void removeDuplicates(Node *head) {
     int count = 0;
 
     while(head) {
-        data[count++] = head->data;
+        data[count++] = head->data; // traversal linkedlist and copy to array
         head = head->next;
     }
 
     qsort(data, count, sizeof(int), cmp);
 
-    printf("%d", data[0]);
-    for(int i = 1; i < count; i++) {
+    for(int i = 0; i < count; i++) {
         if(data[i] != data[i - 1]) {
-            printf(" %d", data[i]);
+            printf("%d ", data[i]);
         }
     }
     printf("\n");
@@ -53,9 +52,9 @@ int main() {
 
     int n;
     while(scanf("%d", &n) == 1) {
+        insertNode(&head, &tail, n);
         if(getchar() == '\n') 
             break;
-        insertNode(&head, &tail, n);
     }
 
     removeDuplicates(head);

@@ -21,8 +21,8 @@ void insertNode(Node** head, Node** tail, char data) {
     if(*head == NULL) {
         *head = *tail = node;
     } else {
-        node->prev = *tail;
         (*tail)->next = node;
+        node->prev = *tail;
         *tail = node;
     }
 }
